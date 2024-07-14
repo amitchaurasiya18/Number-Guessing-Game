@@ -10,29 +10,43 @@ namespace NumberGuessingGame
     {
         static void Main(string[] args)
         {
-            int randomNumber = new Random().Next(1, 100);
+            char playAgain = 'y';
+
+            while (playAgain == 'y')
+            {
+                PlayGame();
+                Console.Write("Want to play again? For 'Yes' press 'y' and for 'No' press 'n': ");
+                playAgain = char.Parse(Console.ReadLine());
+            }
+
+            Console.WriteLine("Thank you for playing!");
+        }
+
+        private static void PlayGame()
+        {
+            int randomNumber = new Random().Next(1, 101);
             int guessedNumber;
             int counter = 1;
-
 
             while (true)
             {
                 Console.WriteLine("Guess any number from 1 to 100: ");
                 guessedNumber = int.Parse(Console.ReadLine());
+
                 if (guessedNumber == randomNumber)
                 {
-                    Console.WriteLine("You made in {0}", counter);
+                    Console.WriteLine($"You guessed it in {counter} attempts!\n");
                     break;
                 }
+
                 Console.WriteLine(ReturnHint(guessedNumber, randomNumber));
                 counter++;
             }
         }
 
-        public static string ReturnHint(int guessedNumber, int randomNumber)
+        private static string ReturnHint(int guessedNumber, int randomNumber)
         {
-            string result = (guessedNumber > randomNumber) ? "The number is lesser than the number you guessed" : "The number is greater than the number you guessed";
-            return result;
+            return (guessedNumber > randomNumber) ? "Sorry, too High" : "Sorry, too Low";
         }
     }
 }
