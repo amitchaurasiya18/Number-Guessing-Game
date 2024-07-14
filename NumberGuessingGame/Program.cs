@@ -10,14 +10,14 @@ namespace NumberGuessingGame
     {
         static void Main(string[] args)
         {
-            int randomNumber = new Random().Next(1, 20);
+            int randomNumber = new Random().Next(1, 100);
             int guessedNumber;
             int counter = 1;
 
 
             while (true)
             {
-                Console.WriteLine("Guess any number from 1 to 20: ");
+                Console.WriteLine("Guess any number from 1 to 100: ");
                 guessedNumber = int.Parse(Console.ReadLine());
                 if (guessedNumber == randomNumber)
                 {
